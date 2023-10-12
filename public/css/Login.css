@@ -1,0 +1,10 @@
+body {
+    background-color: #800000; /* #800000 es el valor hexadecimal para el guinda */
+}
+
+.container {
+    background: white;
+}
+.Letras{
+    font-size: 20px;
+}

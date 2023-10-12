@@ -1,0 +1,19 @@
+
+.logo{
+    width: 295px;
+    height: 95px;
+}
+@media screen and (max-width: 1340px) {
+    .logo {
+        display: none; 
+    }
+}
+@media screen and (max-width: 1340px) {
+    .container {
+        overflow: auto;
+        display: flex;
+    }
+    .container form {
+        padding: 10px; 
+    }
+}

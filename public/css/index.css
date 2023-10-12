@@ -1,0 +1,19 @@
+.Fecha{
+    display: inline-block; 
+    margin-right: 10px; 
+    font-size:20px;
+}
+.Hora{
+    display: inline-block;
+     font-family: Arial, Helvetica, sans-serif;
+}
+.Requesicion{
+    font-size:20px;
+}
+.Titulo{
+    font-size: 25px;
+    
+}
+.label{
+    font-size: 25px;
+}
