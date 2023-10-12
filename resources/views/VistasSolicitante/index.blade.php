@@ -12,15 +12,15 @@
         </div>
         <div class="col-md-3">
           <label class="label"><Strong>Area:</Strong></label>
-          <input class="Requesicion col-md-10" type="text" name="Area" class="form-control" disabled>
+          <input id="Area" class="Requesicion col-md-10" type="text" name="Area" class="form-control" disabled>
         </div>
         <div class="col-md-3">
           <label class="label"><Strong>Requesicion No.</Strong></label>
-          <input class="Requesicion col-md-8" type="text" id="Requesicion" name="Requesicion_No" class="form-control" disabled>
+          <input id="Requesicion" class="Requesicion col-md-8" type="text" id="Requesicion" name="Requesicion_No" class="form-control" disabled>
         </div>
         <div class="col-md-3">
           <label class="label form-label"><strong>Empresa</strong></label>
-          <select class="form-select" name="Empresa" required>
+          <select id="Empresa" class="form-select" name="Empresa" required>
             <option selected>SELECCIONAR...</option>
             @foreach ($solicitudes as $solicitud)
             <option value="{{ $solicitud->Id_Empresa }}">{{ $solicitud->Nombre }}</option>
@@ -29,7 +29,7 @@
         </div>
         <div class="col-md-10 p-2">
           <label class="label"><Strong>Justificación</Strong></label>
-          <input class="Requesicion col-md-12" type="text" name="Justificacion" class="form-control"  oninput="this.value = this.value.toUpperCase()">
+          <input id="Justificacion" class="Requesicion col-md-12" type="text" name="Justificacion" class="form-control" oninput="this.value = this.value.toUpperCase()">
         </div>
       </div>
 
@@ -105,6 +105,95 @@
     </div>
   </div>
 </div>
+<script>
+  let dataRows = 1; // Inicializa con una fila de datos
+
+  function addRow() {
+    const tableBody = document.querySelector("#dynamic-table-body");
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <th scope="row">${dataRows}</th>
+      <td><input type="number" name="Cantidad[]" class="form-control"></td>
+      <td>
+        <select class="form-control" name="Unidad[]" >
+        <option selected>SELECCIONAR...</option>
+          <option value="PZAS">PZAS</option>
+          <option value="CAJON">CAJON</option>
+          <option value="PAQUETE">PAQUETE</option>  
+        </select>
+      </td>
+      <td><input type="text" name="Descripcion[]" class="form-control" oninput="this.value = this.value.toUpperCase()"></td>
+     
+      <td><button class="btn btn-danger" onclick="removeRow(this)">Eliminar</button></td>
+    `;
+    tableBody.appendChild(newRow);
+    dataRows++;
+
+    // Agregar valores a los arrays en el objeto 'data'
+    const cells = newRow.querySelectorAll("td input, td select");
+    const rowData = Array.from(cells).map((cell) => {
+      if (cell.tagName === "SELECT") {
+        return cell.options[cell.selectedIndex].text;
+      }
+      return cell.value;
+    });
+
+    data.Cantidad.push(rowData[0]);
+    data.Unidad.push(rowData[1]);
+    data.Descripcion.push(rowData[2]);
+  }
+
+  function removeRow(button) {
+    const row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+  }
+
+  function saveDataToServer(data) {
+    const jsonData = JSON.stringify(data);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/guardar-datos", true); // Ruta de Laravel para guardar datos
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log("Datos guardados exitosamente en el servidor.");
+      }
+    };
+
+    xhr.send(jsonData);
+  }
+
+  function saveData() {
+    const tableRows = document.querySelectorAll("#dynamic-table-body tr");
+
+    const data = {
+      _token: document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content"), // Agregar el token CSRF
+      Area: document.getElementById('Area').value,
+      Requesicion_No: document.getElementById('Requesicion').value,
+      Justificacion: document.getElementById('Justificacion').value,
+      Id_Empresa: document.getElementById('Empresa').value,
+
+      dynamicData: [],
+    };
+
+    tableRows.forEach((row) => {
+      const cells = row.querySelectorAll("td input, td select");
+      const rowData = Array.from(cells).map((cell) => {
+        if (cell.tagName === "SELECT") {
+          return cell.options[cell.selectedIndex].text;
+        }
+        return cell.value;
+      });
+      data.dynamicData.push(rowData);
+    });
+
+    // Envía los datos al servidor
+    saveDataToServer(data);
+  }
+</script>
 
 <script type="text/javascript" src="{{asset('js/index.js')}}"></script>
 
