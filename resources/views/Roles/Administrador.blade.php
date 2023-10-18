@@ -11,63 +11,45 @@
 </head>
 
 <body>
-    <div id="app">
-        <div id="content">
-            <nav class="navbar navbar-expand-lg " style="background-color: #800000;">
-                <div class="container-fluid">
-                    <button id="sidebarToggle" class="btn btn-light">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <a class="Adm navbar-brand p-2 text-light">Administrador</a>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                    </div>
-                </div>
-            </nav>
-            @yield('Administrador')
-        </div>
-        <div id="sidebar" class="p-3 " >
-            <div class="offcanvas-header mt-1">
-           
-                <h5 class="SysReq offcanvas-title">SysReq</h5>
-
-            </div>
-            <hr>
-            <div class="offcanvas-body p-2 mt-3">
-                <ul class="navbar-nav">
+    <nav class="navbar navbar-expand-lg" style="background-color: #800000;">
+        <div class="container-fluid">
+            <a class="SysReq navbar-brand text-light" href="#">SysReq</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('Solicitudes')}}">Solicitudes</a>
+                        <a class="Soli text-light nav-link" href="{{route('Solicitudes')}}">Solicitudes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('Estatus')}}">Estatus</a>
+                        <a class="Soli text-light  nav-link" href="{{route('Estatus')}}">Estatus</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('Registro')}}">Registros</a>
+                        <a class="Soli text-light  nav-link" href="{{route('Registro')}}">Registros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('Productos')}}">Productos</a>
+                        <a class="Soli text-light  nav-link" href="{{route('Productos')}}">Productos</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="Perfil nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <strong>Perfil</strong>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Configuración</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{route('Login')}}">Cerrar Sesion</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
-            <ul class="navbar-nav ml-auto p-2 mt-3">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Perfil
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" >Nombre</a></li>
-                        <li class="dropdown-item">
-                            <a class="nav-link">Configuración</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="{{route('Login')}}">Cerrar Sesión</a></li>
-                    </ul>
-                </li>
-            </ul>
         </div>
-    </div>
+    </nav>
+    @yield('Administrador')
 
     <script type="text/javascript" src="{{asset('js/navbar.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

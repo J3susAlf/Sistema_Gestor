@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('detalles', function (Blueprint $table) {
             $table->id('Id_Detalles');
+            $table->string('Cantidad'); // Agrega la columna 'Cantidad' como número entero
+            $table->string('Unidad');
             $table->unsignedBigInteger('Id_Requerimiento');
             $table->unsignedBigInteger('Id_Productos'); // Usar unsignedBigInteger para claves foráneas
+            $table->timestamps();
             $table->foreign('Id_Requerimiento')->references('Id_Requerimiento')->on('requerimientos');
             $table->foreign('Id_Productos')->references('Id_Productos')->on('productos');
         });

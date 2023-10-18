@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class solicitante extends Model
 {
     use HasFactory;
-    public $timestamps = false;
-     protected $datos = [
+   
+    /*  protected $datos = [
         'Nombre',
         'Apellido',
         'Telefono',
@@ -17,11 +17,11 @@ class solicitante extends Model
         'Contrasena',
         'Id_Area',
         'Id_Rol'
-    ]; 
+    ];  */
 
-   /*  public function area() 
+    public function areas()
     {
-        return $this-hasOne();
-    } */
+        return $this->belongsTo(area::class, 'Id_Area');
+    }
 
 }

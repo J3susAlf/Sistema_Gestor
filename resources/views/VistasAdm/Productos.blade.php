@@ -1,5 +1,6 @@
 @extends('Roles.Administrador')
 @section('Administrador')
+
 <div class="container-fluid">
     <div class="card-header">
         <div class="container w-40 border p-4 mt-3">
@@ -12,7 +13,7 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Producto</h1>
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel"><i class="fa-solid fa-plus"></i>Agregar Producto</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body p-5">
@@ -24,7 +25,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Cantidad</label>
-                                    <input type="text" name="Cantidad" class="form-control" required>
+                                    <input type="number" name="Cantidad" class="form-control" required>
                                 </div>
 
                                 
@@ -32,9 +33,9 @@
                                     <label class="form-label">Unidad</label>
                                     <select class="form-select" name="Unidad" required>
                                         <option selected>Seleccionar Unidad..</option>
-                                        <option value="PIEZAS">PIEZAS</option>
-                                        <option value="PIEZAS">CAJONES</option>
-                                        <option value="PIEZAS">PAQUETES</option>
+                                        <option value="PZAS">PZAS</option>
+                                        <option value="CAJONES">CAJONES</option>
+                                        <option value="PAQUETES">PAQUETES</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
@@ -52,8 +53,8 @@
             <!--FINAL DEL MODAL-->
             <hr>
             <div class="card-body">
-                <table class="table table-striped mt-3">
-                    <thead>
+                <table class="table table-striped table-bordered mt-3">
+                    <thead class="table-dark">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nombre</th>

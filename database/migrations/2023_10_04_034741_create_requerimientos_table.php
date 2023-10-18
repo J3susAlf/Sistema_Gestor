@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id('Id_Requerimiento');
             $table->string('Requesicion_No');
             $table->string('Fecha'); 
-            $table->string('Descripcion'); 
-            $table->string('Justificacion'); 
+            $table->string('Descripcion_General');
+            $table->string('Justificacion');
             $table->unsignedBigInteger('Id_Empresa'); // Usar unsignedBigInteger para claves foráneas
-           
+            $table->unsignedBigInteger('Id_Solicitante');
+            $table->timestamps();
+            $table->foreign('Id_Solicitante')->references('Id_Solicitante')->on('solicitantes');
             $table->foreign('Id_Empresa')->references('Id_Empresa')->on('empresas');
         });
     }
