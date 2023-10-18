@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Detalles extends Model
 {
     use HasFactory;
-    protected $datos = [
+   /*  protected $datos = [
         'Id_Requerimiento',
         'Id_Productos'
-    ];
+    ]; */
 }

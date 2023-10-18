@@ -1,36 +1,39 @@
 
 
-/*-------------------- JS DEL LA FECHA --------------------*/
-setInterval(() => {
-    let fecha = new Date();
-    let dia = fecha.getDate();
-    let mes = fecha.getMonth() + 1; // Los meses comienzan en 0, por lo que sumamos 1
-    let ano = fecha.getFullYear();
 
-    // Formateamos la fecha como "DD/MM/AAAA"
-    let fechaFormateada = `${dia}/${mes}/${ano}`;
+/* ---------------------- FORM DINAMICO ---------------------- */
+document.addEventListener('DOMContentLoaded', function() {
+    const dynamicFields = document.getElementById('dynamic-fields');
+    const addFieldButton = document.getElementById('add-field');
 
-    document.getElementById("fecha").textContent = fechaFormateada;
-}, 1000);
+    addFieldButton.addEventListener('click', function() {
+      // Clonar la primera fila de campos
+      const firstField = dynamicFields.querySelector('.field');
+      const clonedField = firstField.cloneNode(true);
 
-/* JS DE LA FECHA */
+      // Borrar los valores de los campos clonados
+      const inputs = clonedField.querySelectorAll('input');
+      inputs.forEach(function(input) {
+        input.value = '';
+      });
 
-// JS PARA OBTENER EL AÑO Y VALORES AUTOINCREMENTABLES INICIANDO DESDE 1000
-const year = new Date().getFullYear();
+      // Obtener el número actual de filas y aumentarlo
+      const rowCount = dynamicFields.querySelectorAll('.field').length + 1;
+      const tdNumber = clonedField.querySelector('td:first-child');
+      tdNumber.textContent = rowCount;
 
-const min = 1000;
-const max = 4000;
+      // Agregar el botón de eliminación a la fila clonada
+      const deleteButton = document.createElement('a');
+      deleteButton.href = '#';
+      deleteButton.className = 'btn btn-small btn-danger';
+      deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+      deleteButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        dynamicFields.removeChild(clonedField);
+      });
+      clonedField.querySelector('td:last-child').appendChild(deleteButton);
 
-// Encuentra el último número de Requesicion en la página
-const lastRequesicion = document.querySelectorAll(".Requesicion").length;
+      dynamicFields.appendChild(clonedField);
+    });
+  });
 
-// Calcula el valor de Requesicion
-const requesicionValue = "SDRM " + (min + lastRequesicion) + "/" + year;
-
-// Verifica si el valor calculado supera el valor máximo (1000)
-if (min + lastRequesicion > max) {
-    alert("Se alcanzó el límite máximo de Requesicion (4000).");
-} else {
-    // Establece el valor calculado en el input
-    document.getElementById("Requesicion").value = requesicionValue;
-}

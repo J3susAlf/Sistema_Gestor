@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('solicitantes', function (Blueprint $table) {
             $table->id('Id_Solicitante');
-            $table->string('Nombre');
-            $table->string('Apellido');
-            $table->string('Telefono',20);
+            $table->string('NombreC');
             $table->string('Correo');
             $table->string('Contrasena');
             $table->unsignedBigInteger('Id_Area'); // Usar unsignedBigInteger para claves foráneas
             $table->unsignedBigInteger('Id_Rol');
-        
+            $table->timestamps();
             $table->foreign('Id_Area')->references('Id_Area')->on('areas');
             $table->foreign('Id_Rol')->references('Id_Rol')->on('roles');
         });

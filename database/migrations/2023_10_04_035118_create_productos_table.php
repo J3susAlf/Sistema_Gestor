@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id('Id_Productos');
             $table->string('Nombre');
             $table->integer('Cantidad');
-            $table->string('Unidad');
+            $table->string('Caducidad');
+            $table->timestamps();
         });
     }
 

@@ -8,7 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class area extends Model
 {
     use HasFactory;
-    protected $datos = [
-        'Nombre'
-    ];
+    protected $primaryKey = 'Id_Area';
 }
