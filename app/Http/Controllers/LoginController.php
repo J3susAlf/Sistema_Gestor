@@ -11,10 +11,11 @@ class LoginController extends Controller
     {
         $Usuario = $request->Usuario;
         $Contrasena = $request->Contrasena;
-
-        $consulta = solicitante::Where('Nombre', $Usuario)->where('Contrasena', $Contrasena)->first();
+    
+        $consulta = solicitante::where('Nombre', $Usuario)->where('Contrasena', $Contrasena)->first();
         if ($consulta) {
-            return redirect()->route('index.VistasSolicitante')->with('success', 'Bienvenido de nuevo¡');
+            /* return redirect()->route('index.VistasSolicitante')->with('success', '¡Bienvenido de nuevo!'); */
+            return redirect()->route('Administrador')->with('success', '¡Bienvenido de nuevo!');
         } else {
             return redirect()->route('Login')->with('info', 'Acceso Denegado');
         }

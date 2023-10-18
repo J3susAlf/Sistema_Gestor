@@ -19,16 +19,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
+
+
+
+/*------------ RUTA PRINCIPAL DEL LOGIN ---------------*/
+
 Route::get('/', function () {
     return view('Login');
 })->name('Login');
+Route::post('/', [LoginController::class, 'store'])->name('Login');
 
+/*------------ FINAL DE LA RUTA DEL LOGIN --------------*/
+
+/*------------ RUTAS DE ADMINISTRADOR ----------------*/
 Route::get('/Page/Administrador', function () {
     return view('Roles.Administrador');
 })->name('Administrador.Roles');
 
-
-/*-- RUTAS DE ADMINISTRADOR --*/
 Route::get('/VistasAdm/Estatus', function () {
     return view('VistasAdm.Estatus');
 })->name('VistasAdm.Estatus');
@@ -44,26 +52,8 @@ Route::get('/VistasAdm/Registro', function () {
 Route::get('/VistasAdm/Solicitudes', function () {
     return view('VistasAdm.Solicitudes');
 })->name('VistasAdm.Solicitudes');
-/*-- FINAL DE RUTA DE ADMINISTRADOR --*/
 
-
-/*------------ RUTAS DE SOLICITANTE --------------*/
-Route::get('/PageSolicitante/Solicitud', function () {
-    return view('VistasSolicitante.index');
-})->name('index.VistasSolicitante');
-/*------------ FINAL DE RUTAS DEL SOLICITANTE ------------*/
-
-Route::get('/VistasAdm/Registro/Tabla', function () {
-    return view('VistasAdm.Registro');
-})->name('VistasAdm.Registro');
-
-/*------------ RUTA PRINCIPAL DEL LOGIN ---------------*/
-Route::post('/', [LoginController::class, 'store'])->name('Login');
-/*------------ FINAL DE LA RUTA DEL LOGIN --------------*/
-
-
-/*--- VISTA DE ADMINISTRADOR CON SUS DEMAS RUTAS ---*/
-Route::post('/Page/Administrador', [SolicitudController::class, 'store'])->name('Administrador'); 
+Route::post('/Page/Administrador', [SolicitudController::class, 'store'])->name('Administrador');
 Route::post('/VistasAdm/Estatus', [SolicitudController::class, 'store'])->name('Estatus');
 Route::post('/VistasAdm/Solicitudes', [SolicitudController::class, 'store'])->name('Solicitudes');
 Route::post('/VistasAdm/Productos', [ProductosController::class, 'store'])->name('Productos');
@@ -74,12 +64,23 @@ Route::get('/VistasAdm/Solicitudes', [TablaController::class, 'store'])->name('T
 
 
 /*------------------ VISTA DEL SOLICITANTE ------------ */
+
+Route::get('/PageSolicitante/Solicitud', function () {
+    return view('VistasSolicitante.index');
+})->name('index.VistasSolicitante');
+
+Route::get('/PageSolicitante/Requerimiento', function () {
+    return view('VistasSolicitante.Req');
+})->name('Req.VistasSolicitante');
+
 /*  Route::post('/PageSolicitante/Solicitud', [SolicitudController::class, 'store'])->name('Solicitud'); */
- Route::post('/guardar-datos', [SolicitudController::class, 'store']); 
- Route::get('/PageSolicitante/Solicitud', [SolicitudController::class, 'mostrar'])->name('Solicitudes');
+Route::post('/guardar-datos', [SolicitudController::class, 'store']);
+/* Route::get('/PageSolicitante/Solicitud', [SolicitudController::class, 'mostrarArea'])->name('index.VistasSolicitante'); */
 /*-------------------- FINAL DE LAS RUTAS DEL SOLICITANTE ------------------*/
 
-/* TABLA PARA MOSTRAR LOS REGISTROS NUEVOS DEL SOLICITANTES */
+/*---------------- TABLA PARA MOSTRAR LOS REGISTROS NUEVOS DEL SOLICITANTES --------------*/
+Route::get('/VistasAdm/Registro/Tabla', function () {
+    return view('VistasAdm.Registro');
+})->name('VistasAdm.Registro');
 Route::get('/VistasAdm/Registro', [RegistroController::class, 'Area']);
-/* FINAL DE LA TABLA */
-
+/*--------------- FINAL DE LA TABLA -------------------------*/
