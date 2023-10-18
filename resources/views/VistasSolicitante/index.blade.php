@@ -3,6 +3,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" href="{{asset('css/index.css')}}">
 <div class="container-fluid">
+
   <div class="card-header ">
     <div class="container w-40 border p-4 mt-3 border border-dark border-1">
       <form method="POST" action="/guardar-datos">
@@ -15,7 +16,6 @@
           <div class="col-md-4">
             <label class="label"><strong>Área:</strong></label>
             <input class="Requesicion form-control border-success" type="text" placeholder="EJEMPLO DE AREA" disabled>
-
           </div>
           <div class="col-md-4">
             <label class="label"><strong>Requisición No.</strong></label>
@@ -73,6 +73,7 @@
     </div>
   </div>
 </div>
+
 <script type="text/javascript" src="{{asset('js/index.js')}}"></script>
 
 @endsection

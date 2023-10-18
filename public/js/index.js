@@ -1,5 +1,6 @@
 
 
+
 /* ---------------------- FORM DINAMICO ---------------------- */
 document.addEventListener('DOMContentLoaded', function() {
     const dynamicFields = document.getElementById('dynamic-fields');
@@ -35,3 +36,4 @@ document.addEventListener('DOMContentLoaded', function() {
       dynamicFields.appendChild(clonedField);
     });
   });
+
